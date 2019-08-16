@@ -17,6 +17,7 @@ const postDataLogin = async (req, res) => {
   };
 
   const sendResponse = async (result) => {
+    // console.log(result);
     (result.err) ? wrapper.response(res, 'fail', result, 'Login User')
       : wrapper.response(res, 'success', result, 'Login User', http.OK);
   };
