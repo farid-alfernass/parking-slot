@@ -45,7 +45,7 @@ function AppServer() {
   this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
   this.server.post('/api/kafka-explore/producer', basicAuth.isAuthenticated, kafkaExplore.producer);
-  this.server.post('/api/kafka-explore/consumer', basicAuth.isAuthenticated, kafkaExplore.consumer);
+  this.server.post('/api/kafka-explore/consumer',  kafkaExplore.consumer);
   //Initiation
   mongoConnectionPooling.init();
 }

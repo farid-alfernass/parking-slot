@@ -7,12 +7,12 @@ const { ERROR: httpError, SUCCESS: http } = require('../../../helpers/http-statu
 
 const producer = async (req, res) => {
   const producer = async () => {
-    return commandHandler.producer(req.params);
+    return commandHandler.producer(req.body);
   };
 
   const sendResponse = async (result) => {
-    (result.err) ? wrapper.response(res, 'fail', result, 'Login User')
-      : wrapper.response(res, 'success', result, 'Login User', http.OK);
+    (result.err) ? wrapper.response(res, 'fail', result, 'Fungsi consumer 22222 berhasil di eksekusi')
+      : wrapper.response(res, 'success', result, 'Fungsi consumer kafka berhasil di eksekusi', http.OK);
   };
   sendResponse(await producer());
 };
@@ -23,8 +23,8 @@ const consumer = async (req, res) => {
   };
 
   const sendResponse = async (result) => {
-    (result.err) ? wrapper.response(res, 'fail', result, 'Login User')
-      : wrapper.response(res, 'success', result, 'Login User', http.OK);
+    (result.err) ? wrapper.response(res, 'fail', result, 'Fungsi consumer kafka berhasil dijalankan')
+      : wrapper.response(res, 'success', result, 'Fungsi consumer kafka berhasil dijalankan', http.OK);
   };
   sendResponse(await consumer());
 };

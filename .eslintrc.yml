@@ -20,7 +20,7 @@ parserOptions:
 rules:
   # useful to have in node.js,
   # if you're sure you don't need to handle error, rename it to "_err"
-  handle-callback-err: 2
+  handle-callback-err: 0
 
   # just to make sure we don't forget to remove them when releasing
   no-debugger: 2
@@ -47,13 +47,13 @@ rules:
   # useful for code clean-up
   no-unused-vars: [1, {"vars": "all", "args": "none"}]
 
-  no-console: 2
+  no-console: 0
 
   max-len: [2, 150, 4]
 
   prefer-arrow-callback:
     - error
-    - allowNamedFunctions: true
+    - allowNamedFunctions: false
   indent:
     - error
     - 2
