@@ -2,6 +2,12 @@ const assert = require('assert');
 const sinon = require('sinon');
 const hippie = require('hippie');
 const jwt = require('jsonwebtoken');
+process.env.MONGO_DATABASE_URL='mongodb://localhost:27017/domain';
+process.env.PORT=9000;
+process.env.BASIC_AUTH_USERNAME='telkom';
+process.env.BASIC_AUTH_PASSWORD='da1c25d8-37c8-41b1-afe2-42dd4825bfea';
+process.env.PUBLIC_KEY_PATH='public.pem';
+process.env.PRIVATE_KEY_PATH='private.pem';
 const user = require('../../bin/modules/user/repositories/queries/domain');
 const db = require('../../bin/helpers/databases/mongodb/db');
 const AppServer = require('../../bin/app/server');
@@ -37,6 +43,15 @@ describe('Get Me', () => {
   afterEach(function () {
     this.server.close();
     jwt.verify.restore();
+  });
+
+  after(() => {
+    delete process.env.MONGO_DATABASE_URL;
+    delete process.env.PORT;
+    delete process.env.BASIC_AUTH_USERNAME;
+    delete process.env.BASIC_AUTH_PASSWORD;
+    delete process.env.PUBLIC_KEY_PATH;
+    delete process.env.PRIVATE_KEY_PATH;
   });
 
   it('Should error when view user for /api/users/v1', function (done) {
@@ -85,6 +100,7 @@ describe('Get Me', () => {
       'data': null
     };
 
+    sinon.stub(db.prototype, 'findOne').resolves(result);
     sinon.stub(user.prototype, 'viewUser').resolves(result);
 
     hippie(this.server)
@@ -100,6 +116,7 @@ describe('Get Me', () => {
         assert.equal(result.code, 403);
         assert.equal(result.data, '');
 
+        db.prototype.findOne.restore();
         user.prototype.viewUser.restore();
         done();
       });

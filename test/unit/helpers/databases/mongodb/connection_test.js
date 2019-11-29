@@ -8,6 +8,7 @@ const logger = require('../../../../../bin/helpers/utils/logger');
 
 describe('Mongo Connection', () => {
   let stubMongoConnect;
+  const mongoDbUrl = 'mongodb://localhost:27017/domain';
 
   beforeEach(() => {
     stubMongoConnect = sinon.stub(mongo, 'connect');
@@ -26,7 +27,7 @@ describe('Mongo Connection', () => {
     stubMongoConnect.rejects({
       message: 'test fail connect'
     });
-    await mongoConnection.getConnection(config.get('/mongoDbUrl'));
+    await mongoConnection.getConnection(mongoDbUrl);
   });
   it('should cover create mongo connection failed', () => {
     stubMongoConnect.rejects({

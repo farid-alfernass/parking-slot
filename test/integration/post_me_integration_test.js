@@ -1,7 +1,13 @@
 const hippie = require('hippie');
-const AppServer = require('../../bin/app/server');
 const assert = require('assert');
 const sinon = require('sinon');
+process.env.MONGO_DATABASE_URL='mongodb://localhost:27017/domain';
+process.env.PORT=9000;
+process.env.BASIC_AUTH_USERNAME='telkom';
+process.env.BASIC_AUTH_PASSWORD='da1c25d8-37c8-41b1-afe2-42dd4825bfea';
+process.env.PUBLIC_KEY_PATH='public.pem';
+process.env.PRIVATE_KEY_PATH='private.pem';
+const AppServer = require('../../bin/app/server');
 const commandHandler = require('../../bin/modules/user/repositories/commands/command_handler');
 
 describe('Login Me', () => {
@@ -38,6 +44,15 @@ describe('Login Me', () => {
 
   afterEach(function () {
     this.server.close();
+  });
+
+  after(() => {
+    delete process.env.MONGO_DATABASE_URL;
+    delete process.env.PORT;
+    delete process.env.BASIC_AUTH_USERNAME;
+    delete process.env.BASIC_AUTH_PASSWORD;
+    delete process.env.PUBLIC_KEY_PATH;
+    delete process.env.PRIVATE_KEY_PATH;
   });
 
   it('Should error when post data for /api/users/v1', function (done) {
