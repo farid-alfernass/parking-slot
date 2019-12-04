@@ -7,6 +7,7 @@ const jwtAuth = require('../auth/jwt_auth_helper');
 const wrapper = require('../helpers/utils/wrapper');
 const userHandler = require('../modules/user/handlers/api_handler');
 const mongoConnectionPooling = require('../helpers/databases/mongodb/connection');
+
 function AppServer() {
   this.server = restify.createServer({
     name: `${project.name}-server`,
@@ -43,6 +44,7 @@ function AppServer() {
   this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
   this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
+
   //Initiation
   mongoConnectionPooling.init();
 }
