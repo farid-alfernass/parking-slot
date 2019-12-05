@@ -1,7 +1,6 @@
 
 const Query = require('../queries/query');
 const Command = require('./command');
-const kafka = require('kafka-node');
 const wrapper = require('../../../../helpers/utils/wrapper');
 const jwtAuth = require('../../../../auth/jwt_auth_helper');
 const commonUtil = require('../../../../helpers/utils/common');

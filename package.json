@@ -34,7 +34,6 @@
   },
   "homepage": "https://gitlab.playcourt.id/telkomdev/api-mockup-management#readme",
   "dependencies": {
-    "@sentry/node": "^5.6.1",
     "aws-sdk": "^2.304.0",
     "azure-storage": "^2.10.3",
     "confidence": "^3.0.2",
@@ -45,7 +44,6 @@
     "joi": "^14.0.1",
     "jsftp": "2.0.0",
     "jsonwebtoken": "^8.3.0",
-    "kafka-node": "^4.1.3",
     "mongodb": "^3.1.10",
     "mysql": "^2.15.0",
     "nodemon": "^1.19.0",

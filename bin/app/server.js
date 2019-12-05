@@ -7,7 +7,7 @@ const jwtAuth = require('../auth/jwt_auth_helper');
 const wrapper = require('../helpers/utils/wrapper');
 const userHandler = require('../modules/user/handlers/api_handler');
 const mongoConnectionPooling = require('../helpers/databases/mongodb/connection');
-const kafkaExplore = require('../modules/kafka_explore/handlers/api_handler');
+
 function AppServer() {
   this.server = restify.createServer({
     name: `${project.name}-server`,
@@ -44,8 +44,7 @@ function AppServer() {
   this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
   this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
-  this.server.post('/api/kafka-explore/producer', basicAuth.isAuthenticated, kafkaExplore.producer);
-  this.server.post('/api/kafka-explore/consumer',  kafkaExplore.consumer);
+
   //Initiation
   mongoConnectionPooling.init();
 }

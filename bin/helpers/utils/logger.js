@@ -16,7 +16,7 @@ const log = (context, message, scope) => {
   const obj = {
     context,
     scope,
-    message: `${context}${message.toString()} ${scope}`
+    message: message.toString()
   };
   sentryLog.sendError(obj);
   logger.info(obj);
