@@ -1,4 +1,3 @@
-
 const restify = require('restify');
 const corsMiddleware = require('restify-cors-middleware');
 const project = require('../../package.json');

@@ -1,4 +1,3 @@
-
 const Mongo = require('mongodb').MongoClient;
 const validate = require('validate.js');
 const wrapper = require('../../utils/wrapper');
@@ -16,7 +15,8 @@ const createConnection = async (config) => {
     keepAlive: 15000,
     socketTimeoutMS: 15000,
     connectTimeoutMS: 15000,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   };
   try {
     const connection = await Mongo.connect(config, options);

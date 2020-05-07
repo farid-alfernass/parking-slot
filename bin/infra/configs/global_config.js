@@ -40,9 +40,16 @@ const config = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
     port: process.env.POSTGRES_PORT,
-    max:  parseInt(process.env.POSTGRES_MAX),
-    idleTimeoutMillis: parseInt(process.env.POSTGRES_TIMEOUT)
+    max:  process.env.POSTGRES_MAX,
+    idleTimeoutMillis: process.env.POSTGRES_TIMEOUT
 
+  },
+  logstash: {
+    host: process.env.LOGSTASH_HOST,
+    port: process.env.LOGSTASH_PORT,
+    node_name: 'codebase-backend',
+    ssl_enable: false,
+    max_connect_retries: 10
   }
 };
 
