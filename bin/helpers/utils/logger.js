@@ -69,7 +69,6 @@ const init = () => {
 
 module.exports = {
   log,
-  logger,
   init,
   info,
   error

@@ -67,7 +67,7 @@ const ifExistConnection = async (config) => {
 
 const isConnected = async (state) => {
   const connection = state.db;
-  if (!connection.isConnected()) {
+  if (validate.isEmpty(connection)) {
     return wrapper.error('Connection Not Found, Connection Must be Created Before');
   }
   return wrapper.data(state);
