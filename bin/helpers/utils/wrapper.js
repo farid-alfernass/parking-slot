@@ -1,4 +1,3 @@
-
 const { NotFoundError, InternalServerError, BadRequestError, ConflictError, ExpectationFailedError,
   ForbiddenError, GatewayTimeoutError, ServiceUnavailableError, UnauthorizedError } = require('../error');
 const { ERROR:httpError } = require('../http-status/status_code');
@@ -9,16 +8,19 @@ const paginationData = (data, meta) => ({ err: null, data, meta});
 
 const error = (err) => ({ err, data: null });
 
-const response = (res, type, result, message = '', code = 200) => {
+const response = (res, type, result, message = '', responseCode = 200) => {
   let status = true;
   let data = result.data;
+  let code = responseCode;
   if(type === 'fail'){
+    const errCode = checkErrorCode(result.err);
     status = false;
-    data = '';
+    data = result.err.data || '';
     message = result.err.message || message;
-    code = checkErrorCode(result.err);
+    code = result.err.code || errCode ;
+    responseCode = errCode;
   }
-  res.send(code,
+  res.send(responseCode,
     {
       success: status,
       data,

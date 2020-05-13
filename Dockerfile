@@ -1,13 +1,26 @@
-FROM node:8.9.3-alpine
+FROM node:12.16.3-alpine
 
-RUN apk update
-RUN apk add nodejs
-RUN apk add nodejs-npm  
-RUN apk add git
-RUN mkdir -p /usr/src/app
-COPY . /usr/src/app
+# Set Working Directory
 WORKDIR /usr/src/app
-RUN npm install --silent
+
+# Copy Node Packages Requirement
+COPY package*.json ./
+
+# Install Node Modules Based On Node Packages Requirement
+RUN apk add --update --no-cache --virtual .build-dev \
+      build-base \
+      python \
+      python-dev \
+    && npm i -g npm \
+    && npm i -g node-gyp \
+    && npm i \
+    && apk del .build-dev
+
+# Copy Node Source Code File
+COPY . .
+
+# Expose Application Port
 EXPOSE 9000
 
+# Run The Application
 CMD ["npm", "start"]

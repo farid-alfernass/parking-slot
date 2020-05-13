@@ -1,9 +1,9 @@
 
-const CommonError = require('./common_error');
-
-class NotFoundError extends CommonError {
-  constructor(message) {
-    super(message || 'Not Found');
+class NotFoundError {
+  constructor(param = 'Not Found') {
+    this.message = param.message || param;
+    this.data = param.data;
+    this.code = param.code;
   }
 }
 

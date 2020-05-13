@@ -1,4 +1,3 @@
-
 const Mongo = require('mongodb').MongoClient;
 const validate = require('validate.js');
 const wrapper = require('../../utils/wrapper');
@@ -16,7 +15,8 @@ const createConnection = async (config) => {
     keepAlive: 15000,
     socketTimeoutMS: 15000,
     connectTimeoutMS: 15000,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   };
   try {
     const connection = await Mongo.connect(config, options);
@@ -67,7 +67,7 @@ const ifExistConnection = async (config) => {
 
 const isConnected = async (state) => {
   const connection = state.db;
-  if (!connection.isConnected()) {
+  if (validate.isEmpty(connection)) {
     return wrapper.error('Connection Not Found, Connection Must be Created Before');
   }
   return wrapper.data(state);

@@ -17,7 +17,7 @@ class DB {
     }
     const client = await db.connect();
     const recordset = () => {
-      return new Promise(async (resolve, reject) => {
+      return new Promise((resolve, reject) => {
         client.query(statement, (err, result) => {
           if (err) {
             client.release();
@@ -46,21 +46,19 @@ class DB {
       db = await pool.createConnectionPool(this.config);
     }
     const client = await db.connect();
-    const recordset = () => {
-      return new Promise( async(resolve, reject) => {
-        try {
-          await client.query('BEGIN');
-          const result = await db.query(statement);
-          await client.query('COMMIT');
-          resolve(wrapper.data(result));
-        } catch (error) {
-          logger.log('db-command', error, 'processing command ...');
-          await client.query('ROLLBACK');
-          reject(wrapper.error(error));
-        } finally {
-          client.release();
-        }
-      });
+    const recordset = async() => {
+      try {
+        await client.query('BEGIN');
+        const result = await db.query(statement);
+        await client.query('COMMIT');
+        return wrapper.data(result);
+      } catch (error) {
+        logger.log('db-command', error, 'processing command ...');
+        await client.query('ROLLBACK');
+        return wrapper.error(error);
+      } finally {
+        client.release();
+      }
     };
     const result = await recordset().then(result => {
       return result;

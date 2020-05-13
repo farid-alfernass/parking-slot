@@ -54,11 +54,11 @@ describe('Get Me', () => {
     delete process.env.PRIVATE_KEY_PATH;
   });
 
-  it('Should error when view user for /api/users/v1', function (done) {
+  it('Should error when view user for /users/v1/profile', function (done) {
 
     hippie(this.server)
       .header('authorization','')
-      .get('/api/users/v1')
+      .get('/users/v1/profile')
       .expectStatus(403)
       .end((err, res, body) => {
         if(err){
@@ -68,14 +68,14 @@ describe('Get Me', () => {
       });
   });
 
-  it('Should return data for /api/users/v1', function (done) {
+  it('Should return data for /users/v1/profile', function (done) {
 
     sinon.stub(db.prototype, 'findOne').resolves(result);
     sinon.stub(user.prototype, 'viewUser').resolves(result);
 
     hippie(this.server)
       .header('authorization', 'Bearer dGVsa29tOmRhMWMyNWQ4LTM3YzgtNDFiMS1hZmUyLTQyZGQ0ODI1YmZlYQ==')
-      .get('/api/users/v1')
+      .get('/users/v1/profile')
       .expectStatus(200)
       .end((err, res, body) => {
 
@@ -93,7 +93,7 @@ describe('Get Me', () => {
       });
   });
 
-  it('Should return no data for /api/users/v1', function (done) {
+  it('Should return no data for /users/v1/profile', function (done) {
 
     result = {
       'err': true,
@@ -105,7 +105,7 @@ describe('Get Me', () => {
 
     hippie(this.server)
       .header('authorization', 'Bearer dGVsa29tOmRhMWMyNWQ4LTM3YzgtNDFiMS1hZmUyLTQyZGQ0ODI1YmZlYQ==')
-      .get('/api/users/v1')
+      .get('/users/v1/profile')
       .end((err, res, body) => {
 
         if(err){
