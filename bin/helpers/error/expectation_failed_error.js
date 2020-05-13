@@ -1,9 +1,9 @@
 
-const CommonError = require('./common_error');
-
-class ExpectationFailedError extends CommonError {
-  constructor(message) {
-    super(message || 'Expectation Failed');
+class ExpectationFailedError {
+  constructor(param = 'Expectation Failed') {
+    this.message = param.message || param;
+    this.data = param.data;
+    this.code = param.code;
   }
 }
 

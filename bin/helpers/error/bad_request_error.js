@@ -1,10 +1,10 @@
 
-const CommonError = require('./common_error');
-
-class BadRequestError extends CommonError {
-  constructor(message) {
-    super(message || 'Bad Request');
+class ExpectationFailedError {
+  constructor(param = 'Expectation Failed') {
+    this.message = param.message || param;
+    this.data = param.data;
+    this.code = param.code;
   }
 }
 
-module.exports = BadRequestError;
+module.exports = ExpectationFailedError;

@@ -40,9 +40,9 @@ function AppServer() {
   });
 
   // authenticated client can access the end point, place code bellow
-  this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
-  this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
-  this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
+  this.server.post('/users/v1/login', basicAuth.isAuthenticated, userHandler.postDataLogin);
+  this.server.get('/users/v1/profile', jwtAuth.verifyToken, userHandler.getUser);
+  this.server.post('/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
 
   //Initiation
   mongoConnectionPooling.init();

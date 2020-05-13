@@ -1,9 +1,9 @@
 
-const CommonError = require('./common_error');
-
-class InternalServerError extends CommonError {
-  constructor(message) {
-    super(message || 'Internal Server Error');
+class InternalServerError {
+  constructor(param = 'Internal Server Error') {
+    this.message = param.message || param;
+    this.data = param.data;
+    this.code = param.code;
   }
 }
 

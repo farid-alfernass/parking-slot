@@ -55,24 +55,24 @@ describe('Login Me', () => {
     delete process.env.PRIVATE_KEY_PATH;
   });
 
-  it('Should error when post data for /api/users/v1', function (done) {
+  it('Should error when post data for /users/v1/login', function (done) {
     hippie(this.server)
-      .post('/api/users/v1')
+      .post('/users/v1/login')
       .send()
       .expectStatus(401)
       .end(done);
   });
 
-  it('Should error when post data for /api/users/v1', function (done) {
+  it('Should error when post data for /users/v1/login', function (done) {
     hippie(this.server)
       .header('authorization','Basic dGVsa29tMTIzOmRhMWMyNWQ4LTM3YzgtNDFiMS1hZmUyLTQyZGQ0ODI1YmZlYQ==')
-      .post('/api/users/v1')
+      .post('/users/v1/login')
       .send()
       .expectStatus(401)
       .end(done);
   });
 
-  it('Should return posted data for /api/users/v1', function (done) {
+  it('Should return posted data for /users/v1/login', function (done) {
 
     sinon.stub(commandHandler, 'postDataLogin').resolves(result);
 
@@ -80,7 +80,7 @@ describe('Login Me', () => {
     hippie(this.server)
       .header('authorization','Basic dGVsa29tOmRhMWMyNWQ4LTM3YzgtNDFiMS1hZmUyLTQyZGQ0ODI1YmZlYQ==')
       .json()
-      .post('/api/users/v1')
+      .post('/users/v1/login')
       .send(payload)
       .expectStatus(201)
       .end((err, res, body) => {
