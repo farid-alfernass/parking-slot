@@ -1,4 +1,4 @@
-FROM node:12.16.3-alpine
+FROM telkomindonesia/alpine:nodejs-12
 
 # Set Working Directory
 WORKDIR /usr/src/app
