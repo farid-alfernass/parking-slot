@@ -63,7 +63,7 @@ const verifyToken = async (req, res, next) => {
   const user = await queryUser.getUser(userId);
   if (user.err) {
     result.err = new ForbiddenError('Invalid token!');
-    wrapper.response(res, 'fail', result, 'Invalid token!', ERROR.FORBIDDEN);
+    return wrapper.response(res, 'fail', result, 'Invalid token!', ERROR.FORBIDDEN);
   }
   req.userId = userId;
   next();
