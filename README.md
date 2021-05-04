@@ -1,17 +1,6 @@
-# Project Title
+# Parking Service
 
-This Project is used to create codebase backend
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-Node.js
-Node Package Manager
-....
-```
+This Project is used to test Backend Assignment NASDaily
 
 ### Installing
 
@@ -69,13 +58,4 @@ Add additional notes about how to deploy this on a live system
 
 ### Authors
 
-* **TelkomDev** - *Initial work* - [Gitlab](https://gitlab.playcourt.id/telkomdev)
-
-
-### License
-
-This project is licensed under Telkom Indonesia License - see the [LICENSE.md](LICENSE.md) file for details
-
-### Acknowledgments
-
-* For sample file README.md, see [WIKI](https://gitlab.playcourt.id/telkomdev/codebase-backend/wikis/Readme.md-Sample) in this repository.
+* **farid tri wicaksono** - *Initial work* - [Github](https://github.com/farid-alfernass)

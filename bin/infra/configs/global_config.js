@@ -14,6 +14,7 @@ const config = {
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION
   },
+  parkingSlot: process.env.PARKING_SLOT,
   publicKey: process.env.PUBLIC_KEY_PATH,
   privateKey: process.env.PRIVATE_KEY_PATH,
   dsnSentryUrl: process.env.DSN_SENTRY_URL,
